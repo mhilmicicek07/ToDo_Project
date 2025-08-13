@@ -1,165 +1,121 @@
-//! ToDo Eleman Ekleme
+//! ToDo List
 
-//? Eleman Seçimi
+//? Eleman seçimi
 
 const form = document.querySelector("form");
 const input = document.querySelector("#txtTaskName");
-const btnAddNewTask = document.querySelector("#btnAddNewTask");
 const btnDeleteAll = document.querySelector("#btnDeleteAll");
 const taskList = document.querySelector("#task-list");
-// const items = ["Todo 1", "Todo 2", "Todo 3", "Todo 4","Todo 5","Todo 6"];
-let todos;
+let todos = [];
 
-
-//? Load Items Fonskiyonu
+//? Sayfa yüklenince kayıtlı görevleri getir
 
 function loadItems() {
-    // items.forEach(function (item) {
-    //     createItem(item);
-    // });
     todos = getItemsFromLS();
-    todos.forEach(function (item) {
-        createItem(item);
-    })
+    todos.forEach(createItem);
 }
-
 loadItems();
 
-
-eventListeners();
+//? Event listeners
 
 function eventListeners() {
-    // Submit Event
-    // console.log("submit")
-    form.addEventListener("submit", addNewItem);
-    // Delete an Item
-    taskList.addEventListener("click", deleteItem);
-    // Delete all Item
-    btnDeleteAll.addEventListener("click", deleteAllItems);
+  form.addEventListener("submit", addNewItem);
+  taskList.addEventListener("click", deleteItem);
+  btnDeleteAll.addEventListener("click", deleteAllItems);
 }
+eventListeners();
+
 
 //? Get Items From Local Storage
 
 function getItemsFromLS() {
-    if (localStorage.getItem("todos") === null) {
-        todos = [];
-    }
-    else {
-        todos = JSON.parse(localStorage.getItem("todos"));
-    }
-    return todos;
+  const raw = localStorage.getItem("todos");
+  return raw ? JSON.parse(raw) : [];
+}
+
+// Array → LocalStorage
+function setItemsToLS(arr) {
+  localStorage.setItem("todos", JSON.stringify(arr));
 }
 
 //? Set Item To Local Storage
 
-function setItemToLS(newTodo) {
-    todos = getItemsFromLS();
-    todos.push(newTodo);
-    localStorage.setItem("todos", JSON.stringify(todos));
+function addItemToLS(newTodo) {
+  const list = getItemsFromLS();
+  list.push(newTodo.trim());
+  setItemsToLS(list);
 }
+
+//? Yeni Görev Oluşturma
 
 function createItem(newTodo) {
-    // li(liste elemanı) oluşturma
+  const li = document.createElement("li");
+  li.className =
+    "list-group-item list-group-item-secondary d-flex justify-content-between align-items-center";
+  li.appendChild(document.createTextNode(newTodo));
 
-    const li = document.createElement("li");
-    li.className = "list-group-item list-group-item-secondary";
-    // li.appendChild(document.createTextNode(text));
-    li.appendChild(document.createTextNode(newTodo));
+  const a = document.createElement("a");
+  a.className = "delete-item float-end";
+  a.href = "#";
+  a.innerHTML = '<i style="color:#dc3545;" class="danger fa-solid fa-xmark"></i>';
 
-    // a(link) oluşturmak
-
-    const a = document.createElement("a");
-    a.classList = "delete-item float-right";
-    a.setAttribute("href", "#");
-    a.innerHTML = '<i class="fas fa-times"></i>';
-
-    // Birbiriyle Bağlantılama 
-
-    li.appendChild(a);
-
-    taskList.appendChild(li);
+  li.appendChild(a);
+  taskList.appendChild(li);
 }
+
+//? Yeni Görev Ekleme
 
 function addNewItem(e) {
-    // console.log("submit")
+  e.preventDefault();
 
-    if (input.value === '') {
-        alert("add new item");
-        // console.log("submit");
-    }
+  const value = input.value.trim();
+  if (!value) {
+    alert("Lütfen boş görev eklemeyin!");
+    return;
+  }
 
-    // // li oluşturma
-
-    // const li = document.createElement("li");
-    // li.className = "list-group-item list-group-item-secondary";
-    // li.appendChild(document.createTextNode(input.value));
-
-    // // a oluşturma
-
-    // const a = document.createElement("a");
-    // a.classList = "delete-item float-right";
-    // a.setAttribute("href", "#");
-    // a.innerHTML = '<i class="fas fa-times"></i>';
-
-    // li.appendChild(a);
-    // taskList.appendChild(li);
-
-    //* Create Item
-
-    createItem(input.value);
-
-    setItemToLS(input.value);
-
-    input.value = "";
-
-    e.preventDefault();
-
+  createItem(value);
+  addItemToLS(value);
+  input.value = "";
 }
 
-//? Eleman Silme
+//? Tek Bir Görevi Silme
 
 function deleteItem(e) {
+  const deleteLink = e.target.closest(".delete-item");
+  if (!deleteLink) return;
 
-    // console.log(e.target)
+  const li = deleteLink.closest("li");
+  if (!li) return;
 
-    if (e.target.className === "fas fa-times") {
-        if (confirm("Silmek İstediğinize Emin Misiniz?")) {
-            // console.log(e.target);
-            e.target.parentElement.parentElement.remove();
-            deleteTodoFromStorage(e.target.parentElement.parentElement.textContent);
-        }
+  if (confirm("Görevi silmek istediğinize emin misiniz?")) {
+    li.remove();
+
+    const text = (li.firstChild && li.firstChild.textContent
+      ? li.firstChild.textContent
+      : ""
+    ).trim();
+
+    let list = getItemsFromLS();
+    list = list.filter(t => t.trim() !== text);
+
+    if (list.length === 0) {
+      localStorage.removeItem("todos"); 
+    } else {
+      setItemsToLS(list);
     }
-    e.preventDefault();
-}
-
-//? Local Storage dan eleman silme
-
-function deleteTodoFromStorage(deletetodo) {
-    let todos = getItemsFromLS();
-
-    todos.forEach(function (todo, index) {
-        if (todo === deletetodo) {
-            todos.splice(index, 1);
-        }
-    });
-    localStorage.setItem("todos", JSON.stringify(todos));
+  }
 }
 
 //? Tüm Elemanları Silme
 
 function deleteAllItems(e) {
-    if (confirm("Tüm Elemanları Silmek İstediğinize Emin Misiniz?")) {
+  e.preventDefault();
 
-        // taskList.childNodes.forEach(function (item) {
-        //     console.log(item)
-        //     if (item.nodeType == 1) {
-        //         item.remove();
-        //     }
-        // });
-        while (taskList.firstChild) {
-            taskList.removeChild(taskList.firstChild);
-        }
-        localStorage.clear();
+  if (confirm("Tüm görevleri silmek istediğinize emin misiniz?")) {
+    while (taskList.firstChild) {
+      taskList.removeChild(taskList.firstChild);
     }
-    // taskList.innerHTML=""; // Alternatif Yöntem
+    localStorage.removeItem("todos");
+  }
 }
