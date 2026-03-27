@@ -15,20 +15,20 @@ Repository dil dağılımı (GitHub analizine göre):
 ToDo_Project, tarayıcı üzerinde çalışan basit ama işlevsel bir To-Do (yapılacaklar) listesi uygulamasıdır. HTML, CSS (Bootstrap) ve JavaScript (ES6+) ile geliştirilmiştir. Görevler tarayıcıya ait LocalStorage üzerinde kalıcı olarak saklanır.
 
 ### Özellikler
-- Yeni görev ekleme
-- Görevleri silme
+- Yeni görev ekleme (boş giriş engellenir)
+- Tekil görev silme
 - Tüm görevleri temizleme
-- Görevleri tamamlandı/aktif olarak işaretleme
-- LocalStorage ile verilerin kalıcılığı
-- Modern ve responsive arayüz (Bootstrap)
+- LocalStorage ile verilerin kalıcılığı (bozuk kayıtlar otomatik temizlenir)
+- Bootstrap 5.3.3 ve Font Awesome 6.5.1 ile modern, responsive arayüz
 
 ### Kullanılan Teknolojiler
 | Teknoloji | Rol |
 |---|---|
 | HTML5 | Yapısal iskelet |
-| CSS3 & Bootstrap 5 | Stil ve responsive düzen |
+| CSS3 & Bootstrap 5.3.3 | Stil ve responsive düzen |
 | JavaScript (ES6+) | Uygulama mantığı, DOM manipülasyonu |
 | LocalStorage API | İstemci tarafı veri depolama |
+| Font Awesome 6.5.1 | İkon seti |
 
 ### Proje Dosya Yapısı
 ```
@@ -62,8 +62,10 @@ ToDo_Project
        ```
 
 ### Geliştirici Notları
-- Uygulama mantığı `todo.js` içerisinde yer alır: görev ekleme/silme işlemleri hem DOM'a yansıtılır hem de LocalStorage'a kaydedilir.
-- Eğer farklı bir dosya adıyla açılıyorsa veya build adımı varsa (mevcut repo statik görünüyor) README'yi buna göre güncelleyin.
+- Uygulama mantığı `todo.js` içerisinde: görev ekleme/silme işlemleri hem DOM'a yansır hem de LocalStorage'a kaydedilir.
+- Aynı metne sahip birden fazla görevden yalnızca ilki silinir.
+- LocalStorage'ta bozuk veya beklenmeyen veri algılanırsa otomatik temizlenir.
+- Proje statik çalışır; derleme adımı yoktur. Doğrudan `todo.html` açılabilir ya da basit bir yerel sunucu kullanılabilir.
 
 ### Katkıda Bulunma
 Katkılar memnuniyetle kabul edilir:
@@ -86,20 +88,20 @@ Bu repoda açıkça belirtilmiş bir lisans yok. Kullanım ve dağıtım koşull
 ToDo_Project is a simple browser-based to-do list application built with HTML, CSS (Bootstrap) and JavaScript (ES6+). Tasks are persisted locally using the browser's LocalStorage.
 
 ### Features
-- Add tasks
+- Add tasks (empty input is blocked)
 - Delete individual tasks
 - Clear all tasks
-- Mark tasks as completed/active
-- Data persistence with LocalStorage
-- Responsive UI using Bootstrap
+- Persist data in LocalStorage (invalid data is cleaned automatically)
+- Responsive UI with Bootstrap 5.3.3 + Font Awesome 6.5.1 icons
 
 ### Technologies Used
 | Technology | Purpose |
 |---|---|
 | HTML5 | Structural layout |
-| CSS3 & Bootstrap 5 | Styling and responsive layout |
+| CSS3 & Bootstrap 5.3.3 | Styling and responsive layout |
 | JavaScript (ES6+) | Application logic and DOM manipulation |
 | LocalStorage API | Client-side data persistence |
+| Font Awesome 6.5.1 | Icon set |
 
 ### Project Structure
 ```
@@ -134,7 +136,9 @@ ToDo_Project
 
 ### Developer Notes
 - The main logic lives in `todo.js`: tasks are rendered to the DOM and simultaneously saved to LocalStorage.
-- If the repo uses a different entry file or build steps, update this README accordingly.
+- When several tasks share the same text, deleting one removes only the first match.
+- Corrupted LocalStorage entries are cleaned automatically to keep the UI working.
+- The project is fully static; open `todo.html` directly or via a lightweight local server.
 
 ### Contributing
 Contributions are welcome:
@@ -157,20 +161,20 @@ No explicit license file is present. Consider adding a license such as MIT to cl
 ToDo_Project ist eine einfache To-Do-Listen-Webanwendung, die im Browser läuft und mit HTML, CSS (Bootstrap) und JavaScript (ES6+) entwickelt wurde. Aufgaben werden lokal im Browser-LocalStorage gespeichert.
 
 ### Funktionen
-- Aufgaben hinzufügen
+- Aufgaben hinzufügen (leere Eingaben werden abgefangen)
 - Einzelne Aufgaben löschen
 - Alle Aufgaben löschen
-- Aufgaben als erledigt/aktiv markieren
-- Persistenz mittels LocalStorage
-- Responsives UI mit Bootstrap
+- Persistenz mittels LocalStorage (ungültige Daten werden automatisch bereinigt)
+- Responsives UI mit Bootstrap 5.3.3 und Font Awesome 6.5.1
 
 ### Verwendete Technologien
 | Technologie | Zweck |
 |---|---|
 | HTML5 | Strukturelles Layout |
-| CSS3 & Bootstrap 5 | Styling und responsive Layout |
+| CSS3 & Bootstrap 5.3.3 | Styling und responsives Layout |
 | JavaScript (ES6+) | Anwendungslogik und DOM-Manipulation |
 | LocalStorage API | Client-seitige Persistenz |
+| Font Awesome 6.5.1 | Icon-Set |
 
 ### Projektstruktur
 ```
@@ -205,7 +209,9 @@ ToDo_Project
 
 ### Hinweise für Entwickler
 - Hauptlogik in `todo.js`: Aufgaben werden ins DOM geschrieben und in LocalStorage gespeichert.
-- Falls Build-Schritte oder andere giriş noktaları varsa README buna göre güncellenmelidir.
+- Bei mehrfach identischem Text wird nur der erste Treffer gelöscht.
+- Ungültige LocalStorage-Daten werden automatisch bereinigt.
+- Das Projekt ist statisch; `todo.html` kann direkt oder über einen leichten lokalen Server geöffnet werden.
 
 ### Mitwirkung
 Beiträge sind willkommen:

@@ -1,18 +1,14 @@
 //! ToDo List
 
-//? Eleman seçimi
-
 const form = document.querySelector("form");
 const input = document.querySelector("#txtTaskName");
 const btnDeleteAll = document.querySelector("#btnDeleteAll");
 const taskList = document.querySelector("#task-list");
-let todos = [];
 
 //? Sayfa yüklenince kayıtlı görevleri getir
 
 function loadItems() {
-    todos = getItemsFromLS();
-    todos.forEach(createItem);
+  getItemsFromLS().forEach(createItem);
 }
 loadItems();
 
@@ -30,7 +26,16 @@ eventListeners();
 
 function getItemsFromLS() {
   const raw = localStorage.getItem("todos");
-  return raw ? JSON.parse(raw) : [];
+  if (!raw) return [];
+
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    console.warn("LocalStorage verisi okunamadı, temizleniyor.", err);
+    localStorage.removeItem("todos");
+    return [];
+  }
 }
 
 // Array → LocalStorage
@@ -77,6 +82,7 @@ function addNewItem(e) {
   createItem(value);
   addItemToLS(value);
   input.value = "";
+  input.focus();
 }
 
 //? Tek Bir Görevi Silme
@@ -97,7 +103,11 @@ function deleteItem(e) {
     ).trim();
 
     let list = getItemsFromLS();
-    list = list.filter(t => t.trim() !== text);
+    const index = list.findIndex(t => t.trim() === text);
+
+    if (index > -1) {
+      list.splice(index, 1);
+    }
 
     if (list.length === 0) {
       localStorage.removeItem("todos"); 
