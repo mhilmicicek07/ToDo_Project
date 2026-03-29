@@ -19,7 +19,7 @@ ToDo_Project, tarayıcı üzerinde çalışan basit ama işlevsel bir To-Do (yap
 - Tekil görev silme
 - Tüm görevleri temizleme
 - LocalStorage ile verilerin kalıcılığı (bozuk kayıtlar otomatik temizlenir)
-- Bootstrap 5.3.3 ve Font Awesome 6.5.1 ile modern, responsive arayüz
+- Bootstrap 5.3.8 ve Font Awesome 7.0.1 ile modern, responsive arayüz
 
 ### Kullanılan Teknolojiler
 | Teknoloji | Rol |
@@ -92,7 +92,7 @@ ToDo_Project is a simple browser-based to-do list application built with HTML, C
 - Delete individual tasks
 - Clear all tasks
 - Persist data in LocalStorage (invalid data is cleaned automatically)
-- Responsive UI with Bootstrap 5.3.3 + Font Awesome 6.5.1 icons
+- Responsive UI with Bootstrap 5.3.8 + Font Awesome 7.0.1 icons
 
 ### Technologies Used
 | Technology | Purpose |
@@ -165,7 +165,7 @@ ToDo_Project ist eine einfache To-Do-Listen-Webanwendung, die im Browser läuft 
 - Einzelne Aufgaben löschen
 - Alle Aufgaben löschen
 - Persistenz mittels LocalStorage (ungültige Daten werden automatisch bereinigt)
-- Responsives UI mit Bootstrap 5.3.3 und Font Awesome 6.5.1
+- Responsives UI mit Bootstrap 5.3.8 und Font Awesome 7.0.1
 
 ### Verwendete Technologien
 | Technologie | Zweck |
