@@ -25,10 +25,10 @@ ToDo_Project, tarayıcı üzerinde çalışan basit ama işlevsel bir To-Do (yap
 | Teknoloji | Rol |
 |---|---|
 | HTML5 | Yapısal iskelet |
-| CSS3 & Bootstrap 5.3.3 | Stil ve responsive düzen |
+| CSS3 & Bootstrap 5.3.8 | Stil ve responsive düzen |
 | JavaScript (ES6+) | Uygulama mantığı, DOM manipülasyonu |
 | LocalStorage API | İstemci tarafı veri depolama |
-| Font Awesome 6.5.1 | İkon seti |
+| Font Awesome 7.0.1 | İkon seti |
 
 ### Proje Dosya Yapısı
 ```
@@ -98,10 +98,10 @@ ToDo_Project is a simple browser-based to-do list application built with HTML, C
 | Technology | Purpose |
 |---|---|
 | HTML5 | Structural layout |
-| CSS3 & Bootstrap 5.3.3 | Styling and responsive layout |
+| CSS3 & Bootstrap 5.3.8 | Styling and responsive layout |
 | JavaScript (ES6+) | Application logic and DOM manipulation |
 | LocalStorage API | Client-side data persistence |
-| Font Awesome 6.5.1 | Icon set |
+| Font Awesome 7.0.1 | Icon set |
 
 ### Project Structure
 ```
@@ -171,10 +171,10 @@ ToDo_Project ist eine einfache To-Do-Listen-Webanwendung, die im Browser läuft 
 | Technologie | Zweck |
 |---|---|
 | HTML5 | Strukturelles Layout |
-| CSS3 & Bootstrap 5.3.3 | Styling und responsives Layout |
+| CSS3 & Bootstrap 5.3.8 | Styling und responsives Layout |
 | JavaScript (ES6+) | Anwendungslogik und DOM-Manipulation |
 | LocalStorage API | Client-seitige Persistenz |
-| Font Awesome 6.5.1 | Icon-Set |
+| Font Awesome 7.0.1 | Icon-Set |
 
 ### Projektstruktur
 ```

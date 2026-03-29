@@ -38,7 +38,7 @@ function getItemsFromLS() {
   }
 }
 
-// Array → LocalStorage
+//? Array → LocalStorage
 function setItemsToLS(arr) {
   localStorage.setItem("todos", JSON.stringify(arr));
 }
@@ -110,7 +110,7 @@ function deleteItem(e) {
     }
 
     if (list.length === 0) {
-      localStorage.removeItem("todos"); 
+      localStorage.removeItem("todos");
     } else {
       setItemsToLS(list);
     }
