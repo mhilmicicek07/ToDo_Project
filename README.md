@@ -16,8 +16,8 @@ ToDo_Project, tarayıcı üzerinde çalışan basit ama işlevsel bir To-Do (yap
 
 ### Özellikler
 - Yeni görev ekleme (boş giriş engellenir)
-- Tekil görev silme
-- Tüm görevleri temizleme
+- Tekil görev silme (tarayıcı onay diyaloğu ile)
+- Tüm görevleri temizleme (tarayıcı onay diyaloğu ile)
 - LocalStorage ile verilerin kalıcılığı (bozuk kayıtlar otomatik temizlenir)
 - Bootstrap 5.3.8 ve Font Awesome 7.0.1 ile modern, responsive arayüz
 
@@ -89,8 +89,8 @@ ToDo_Project is a simple browser-based to-do list application built with HTML, C
 
 ### Features
 - Add tasks (empty input is blocked)
-- Delete individual tasks
-- Clear all tasks
+- Delete individual tasks (with browser confirmation dialog)
+- Clear all tasks (with browser confirmation dialog)
 - Persist data in LocalStorage (invalid data is cleaned automatically)
 - Responsive UI with Bootstrap 5.3.8 + Font Awesome 7.0.1 icons
 
@@ -162,8 +162,8 @@ ToDo_Project ist eine einfache To-Do-Listen-Webanwendung, die im Browser läuft 
 
 ### Funktionen
 - Aufgaben hinzufügen (leere Eingaben werden abgefangen)
-- Einzelne Aufgaben löschen
-- Alle Aufgaben löschen
+- Einzelne Aufgaben löschen (mit Browser-Bestätigungsdialog)
+- Alle Aufgaben löschen (mit Browser-Bestätigungsdialog)
 - Persistenz mittels LocalStorage (ungültige Daten werden automatisch bereinigt)
 - Responsives UI mit Bootstrap 5.3.8 und Font Awesome 7.0.1
 
